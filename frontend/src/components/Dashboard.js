@@ -17,22 +17,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-wrapper">
-        {/* Sidebar */}
-        <aside className="sidebar">
-          <nav className="nav-links">
-            <SidebarButton Icon={Home} text=" Home" to="/" />
-            <SidebarButton Icon={Plus} text=" Add Data" to="/add-data" />
-            <SidebarButton Icon={Grid} text=" View All" to="/view-all" />
-            <SidebarButton Icon={Settings} text=" Settings" to="/settings" />
-          </nav>
-          <div className="user">
-            <div className="user-info">
-              <div className="avatar"></div>
-              <span className="username">Username</span>
-            </div>
-            <SidebarButton Icon={LogOut} text=" Log Out" to="/logout" />
-          </div>
-        </aside>
+
 
         {/* Main Content */}
         <main className="main-content">

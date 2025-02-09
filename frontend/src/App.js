@@ -4,6 +4,7 @@ import Dashboard from "./components/Dashboard";
 import AddData from "./components/AddData";
 import ViewAll from "./components/ViewAll";
 import Layout from "./components/Layout";
+import "./App.css";
 
 function App() {
   return (

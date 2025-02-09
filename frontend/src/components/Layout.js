@@ -1,11 +1,11 @@
 import React from "react";
-import NavBar from "./NavBar";  // Note the relative path!
+import Sidebar from "./Sidebar";
 import "./Dashboard.css"; // Import the CSS file
 
 export default function Layout({ children }) {
   return (
     <div className="layout">
-      <NavBar />
+      <Sidebar />
       <div className="content">{children}</div>
     </div>
   );
