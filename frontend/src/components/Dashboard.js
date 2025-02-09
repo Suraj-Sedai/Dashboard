@@ -1,0 +1,164 @@
+import React, { useEffect, useRef } from "react";
+import { Home, Plus, Grid, Settings, Download, LogOut } from "lucide-react";
+import { Chart } from "chart.js/auto";
+import "./Dashboard.css"; // Import the CSS file
+
+export default function Dashboard() {
+  const spendingData = [
+    { category: "Entertainment", amount: 714.25 },
+    { category: "Food", amount: 104.04 },
+    { category: "Shopping", amount: 917.55 },
+    { category: "Bills", amount: 523.97 },
+    { category: "Travel", amount: 312.85 },
+    { category: "Others", amount: 14.27 },
+  ];
+
+  return (
+    <div className="dashboard-container">
+      <div className="dashboard-wrapper">
+        {/* Sidebar */}
+        <div className="sidebar">
+          <nav className="nav-links">
+            <SidebarButton Icon={Home} text=" Home" />
+            <SidebarButton Icon={Plus} text=" Add Data" />
+            <SidebarButton Icon={Grid} text=" View All" />
+            <SidebarButton Icon={Settings} text=" Settings" />
+          </nav>
+          <div className="user">
+                <div className="user-info">
+                    <div className="avatar"></div>
+                    <span className="username">Username</span>
+                </div>
+                <SidebarButton Icon={LogOut} text="Log Out" />
+            </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="main-content">
+          <h1 className="dashboard-title">Dashboard</h1>
+
+          {/* Metrics */}
+          <div className="metrics">
+            <Card title="Total Spending" value="$4128.98" />
+            <Card title="Average Spending" value="$687.54" />
+          </div>
+
+          {/* Spending Categories and Chart */}
+          <div className="spending-section">
+            <CategoryList data={spendingData} />
+            <ChartCard data={spendingData} />
+          </div>
+
+          {/* Download Section */}
+          <div className="download-section">
+            <h2>Download Your Financial Data</h2>
+            <div className="download-buttons">
+              <DownloadButton format="PDF" />
+              <DownloadButton format="CSV" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Sidebar Button Component
+function SidebarButton({ Icon, text }) {
+  return (
+    <button className="sidebar-button">
+      <Icon className="icon" />
+      {text}
+    </button>
+  );
+}
+
+// Card Component
+function Card({ title, value }) {
+  return (
+    <div className="card">
+      <h3>{title}</h3>
+      <p className="value">{value}</p>
+    </div>
+  );
+}
+
+// Spending List Component
+function CategoryList({ data }) {
+  return (
+    <div className="card">
+      <h3>Spending by Category</h3>
+      {data.map((item) => (
+        <div key={item.category} className="spending-item">
+          <span>{item.category}</span>
+          <span>${item.amount.toFixed(2)}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Pie Chart Component
+function ChartCard({ data }) {
+  return (
+    <div className="card">
+      <PieChart data={data} />
+    </div>
+  );
+}
+
+// Pie Chart Component
+function PieChart({ data }) {
+  const chartRef = useRef(null);
+  const chartInstance = useRef(null);
+
+  useEffect(() => {
+    if (!chartRef.current) return;
+
+    if (chartInstance.current) {
+      chartInstance.current.destroy();
+    }
+
+    const ctx = chartRef.current.getContext("2d");
+    if (!ctx) return;
+
+    chartInstance.current = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: data.map((item) => item.category),
+        datasets: [
+          {
+            data: data.map((item) => item.amount),
+            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"],
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "right",
+          },
+        },
+      },
+    });
+
+    return () => {
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+    };
+  }, [data]);
+
+  return <canvas ref={chartRef} />;
+}
+
+// Download Button Component
+function DownloadButton({ format }) {
+  return (
+    <button className="download-button">
+      <Download className="icon" />
+      {format}
+    </button>
+  );
+}
