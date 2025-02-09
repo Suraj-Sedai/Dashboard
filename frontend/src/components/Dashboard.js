@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Home, Plus, Grid, Settings, Download, LogOut } from "lucide-react";
 import { Chart } from "chart.js/auto";
 import "./Dashboard.css"; // Import the CSS file
@@ -19,17 +20,17 @@ export default function Dashboard() {
         {/* Sidebar */}
         <aside className="sidebar">
           <nav className="nav-links">
-            <SidebarButton Icon={Home} text=" Home" />
-            <SidebarButton Icon={Plus} text=" Add Data" />
-            <SidebarButton Icon={Grid} text=" View All" />
-            <SidebarButton Icon={Settings} text=" Settings" />
+            <SidebarButton Icon={Home} text=" Home" to="/" />
+            <SidebarButton Icon={Plus} text=" Add Data" to="/add-data" />
+            <SidebarButton Icon={Grid} text=" View All" to="/view-all" />
+            <SidebarButton Icon={Settings} text=" Settings" to="/settings" />
           </nav>
           <div className="user">
             <div className="user-info">
               <div className="avatar"></div>
               <span className="username">Username</span>
             </div>
-            <SidebarButton Icon={LogOut} text=" Log Out" />
+            <SidebarButton Icon={LogOut} text=" Log Out" to="/logout" />
           </div>
         </aside>
 
@@ -63,14 +64,17 @@ export default function Dashboard() {
   );
 }
 
-// Sidebar Button Component
-function SidebarButton({ Icon, text }) {
-  return (
+// Sidebar Button Component with optional navigation
+function SidebarButton({ Icon, text, to }) {
+  const buttonContent = (
     <button className="sidebar-button">
       <Icon className="icon" />
       <span className="sidebar-text">{text}</span>
     </button>
   );
+
+  // If a "to" prop is provided, wrap the button with a Link for navigation.
+  return to ? <Link to={to}>{buttonContent}</Link> : buttonContent;
 }
 
 // Card Component for Metrics
@@ -117,6 +121,7 @@ function PieChart({ data }) {
   useEffect(() => {
     if (!chartRef.current) return;
 
+    // Destroy the previous chart instance if it exists
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
@@ -157,6 +162,7 @@ function PieChart({ data }) {
       },
     });
 
+    // Cleanup the chart instance when the component unmounts
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();

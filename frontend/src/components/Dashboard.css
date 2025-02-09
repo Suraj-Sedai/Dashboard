@@ -219,3 +219,242 @@ body {
 .chart-card canvas {
   max-width: 100% !important;
 }
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+.add-data-container {
+  min-height: 100vh;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.add-data-wrapper {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+}
+
+.add-data-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.add-data-header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ff8c00;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #ff8c00;
+}
+
+.back-button .icon {
+  margin-right: 0.5rem;
+}
+
+.add-data-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #222;
+  color: #e0e0e0;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #ff8c00;
+}
+
+.submit-button {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff8c00;
+  color: #222;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  font-weight: 600;
+}
+
+.submit-button:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+.viewall-container {
+  min-height: 100vh;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.viewall-wrapper {
+  width: 100%;
+  max-width: 800px;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.viewall-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.viewall-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ff8c00;
+  margin-top: 0.5rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.back-button .icon {
+  margin-right: 0.5rem;
+}
+
+.back-button:hover {
+  color: #ff8c00;
+}
+
+.spending-table-container {
+  overflow-x: auto;
+}
+
+.spending-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.spending-table th,
+.spending-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.spending-table th {
+  background-color: #222;
+  font-weight: 600;
+}
+
+.spending-table tbody tr:hover {
+  background-color: #2a2a2a;
+}
+
+
+
+
+
+.navbar {
+    background-color: #1e1e1e;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-links li {
+    /* You can add any additional styles for list items here */
+  }
+  
+  .navbar-links a {
+    text-decoration: none;  /* Removes the default blue underline */
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-links a:hover {
+    color: #ff8c00;
+  }
+  
+  .navbar-links a.active {
+    color: #ff8c00;
+    font-weight: 600;
+  }
+  .layout {
+    padding-top: 70px; /* Adjust based on your navbar height */
+  }
+  
+  .content {
+    padding: 2rem;
+  }
+    
