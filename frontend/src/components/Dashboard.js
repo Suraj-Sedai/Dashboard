@@ -17,7 +17,7 @@ export default function Dashboard() {
     <div className="dashboard-container">
       <div className="dashboard-wrapper">
         {/* Sidebar */}
-        <div className="sidebar">
+        <aside className="sidebar">
           <nav className="nav-links">
             <SidebarButton Icon={Home} text=" Home" />
             <SidebarButton Icon={Plus} text=" Add Data" />
@@ -25,39 +25,39 @@ export default function Dashboard() {
             <SidebarButton Icon={Settings} text=" Settings" />
           </nav>
           <div className="user">
-                <div className="user-info">
-                    <div className="avatar"></div>
-                    <span className="username">Username</span>
-                </div>
-                <SidebarButton Icon={LogOut} text="Log Out" />
+            <div className="user-info">
+              <div className="avatar"></div>
+              <span className="username">Username</span>
             </div>
-        </div>
+            <SidebarButton Icon={LogOut} text=" Log Out" />
+          </div>
+        </aside>
 
         {/* Main Content */}
-        <div className="main-content">
+        <main className="main-content">
           <h1 className="dashboard-title">Dashboard</h1>
 
           {/* Metrics */}
-          <div className="metrics">
+          <section className="metrics">
             <Card title="Total Spending" value="$4128.98" />
             <Card title="Average Spending" value="$687.54" />
-          </div>
+          </section>
 
           {/* Spending Categories and Chart */}
-          <div className="spending-section">
+          <section className="spending-section">
             <CategoryList data={spendingData} />
             <ChartCard data={spendingData} />
-          </div>
+          </section>
 
           {/* Download Section */}
-          <div className="download-section">
+          <section className="download-section">
             <h2>Download Your Financial Data</h2>
             <div className="download-buttons">
               <DownloadButton format="PDF" />
               <DownloadButton format="CSV" />
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
       </div>
     </div>
   );
@@ -68,15 +68,15 @@ function SidebarButton({ Icon, text }) {
   return (
     <button className="sidebar-button">
       <Icon className="icon" />
-      {text}
+      <span className="sidebar-text">{text}</span>
     </button>
   );
 }
 
-// Card Component
+// Card Component for Metrics
 function Card({ title, value }) {
   return (
-    <div className="card">
+    <div className="card metric-card">
       <h3>{title}</h3>
       <p className="value">{value}</p>
     </div>
@@ -86,28 +86,30 @@ function Card({ title, value }) {
 // Spending List Component
 function CategoryList({ data }) {
   return (
-    <div className="card">
+    <div className="card category-card">
       <h3>Spending by Category</h3>
-      {data.map((item) => (
-        <div key={item.category} className="spending-item">
-          <span>{item.category}</span>
-          <span>${item.amount.toFixed(2)}</span>
-        </div>
-      ))}
+      <div className="category-list">
+        {data.map((item) => (
+          <div key={item.category} className="spending-item">
+            <span className="category-name">{item.category}</span>
+            <span className="category-amount">${item.amount.toFixed(2)}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
-// Pie Chart Component
+// Chart Card Component
 function ChartCard({ data }) {
   return (
-    <div className="card">
+    <div className="card chart-card">
       <PieChart data={data} />
     </div>
   );
 }
 
-// Pie Chart Component
+// Pie Chart Component using Chart.js
 function PieChart({ data }) {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
@@ -129,7 +131,16 @@ function PieChart({ data }) {
         datasets: [
           {
             data: data.map((item) => item.amount),
-            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"],
+            backgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56",
+              "#4BC0C0",
+              "#9966FF",
+              "#FF9F40",
+            ],
+            borderColor: "#222",
+            borderWidth: 2,
           },
         ],
       },
@@ -138,6 +149,9 @@ function PieChart({ data }) {
         plugins: {
           legend: {
             position: "right",
+            labels: {
+              color: "#fff",
+            },
           },
         },
       },
@@ -158,7 +172,7 @@ function DownloadButton({ format }) {
   return (
     <button className="download-button">
       <Download className="icon" />
-      {format}
+      <span>{format}</span>
     </button>
   );
 }
