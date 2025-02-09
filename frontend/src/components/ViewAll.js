@@ -1,7 +1,6 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import "./Dashboard.css"; // Import the CSS file
 
 export default function ViewAll() {
   // Sample spending list with additional fields.

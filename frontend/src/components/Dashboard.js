@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Home, Plus, Grid, Settings, Download, LogOut } from "lucide-react";
 import { Chart } from "chart.js/auto";
-import "./Dashboard.css"; // Import the CSS file
 
 export default function Dashboard() {
   const spendingData = [

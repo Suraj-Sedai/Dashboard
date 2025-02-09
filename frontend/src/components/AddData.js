@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom"; // Optional: if you're using react-router
-import "./Dashboard.css"; // Import the CSS file
 
 const categories = [
   "Entertainment",

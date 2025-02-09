@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Home, Plus, Grid, Settings, LogOut } from "lucide-react";
-import "./Dashboard.css"; // Import the CSS file
 
 export default function Sidebar() {
   return (
